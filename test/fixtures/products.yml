@@ -3,7 +3,7 @@
 one:
   title: Keyboard
   price: 29.99
-  published: false
+  published: true
   user: one
 
 two:
