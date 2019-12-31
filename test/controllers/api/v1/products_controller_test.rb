@@ -90,4 +90,27 @@ class Api::V1::ProductsControllerTest < ActionDispatch::IntegrationTest
     }, as: :json
     assert_response :forbidden
   end
+
+  test 'should filter products by name' do
+    assert_equal 2, Product.filter_by_title('tv').count
+  end
+
+  test 'should filter products by name and short them' do
+    assert_equal [products(:another_tv), products(:one)], Product.filter_by_title('tv').sort
+  end
+
+  test 'should filter products by price and short them' do
+    assert_equal [products(:two), products(:one)], Product.above_or_equal_to_price(200).sort
+  end
+
+  test 'should filter products by price lower and sorte them' do
+    assert_equal [products(:another_tv)], Product.below_or_equal_to_price(200).sort
+  end
+
+  test 'should sorte product by most recent' do
+    products(:two).touch
+    products(:one)
+
+    assert_equal [products(:another_tv), products(:one), products(:two)], Product.recent.to_a
+  end
 end
