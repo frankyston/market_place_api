@@ -18,6 +18,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem "jwt", "~> 2.2"
 gem 'faker'
 gem 'fast_jsonapi'
+gem 'kaminari'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
